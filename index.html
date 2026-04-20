@@ -57,17 +57,17 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 15px; /* Разделение на строки */
-            margin: 20px 0;
+            gap: 10px; 
+            margin: 15px 0;
             z-index: 2;
         }
 
         .important-note {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--dark);
             background: var(--gold);
-            padding: 12px 20px;
-            display: block; /* Каждая заметка — отдельный блок */
+            padding: 10px 18px;
+            display: block; 
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -94,16 +94,41 @@
         }
         #hero-page h1 { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; text-transform: uppercase; margin: 0; text-shadow: 0 2px 15px rgba(0,0,0,0.7); }
 
-        .price-page { justify-content: flex-start; padding-top: 30px; }
+        /* ПРАЙС-ЛИСТ - ОПТИМИЗАЦИЯ МАСШТАБА */
+        .price-page { justify-content: flex-start; padding-top: 2vh; }
         .price-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; 
+            gap: 12px; 
             z-index: 2;
+            width: 100%;
         }
-        .price-card { background: var(--gray-bg); border-left: 5px solid var(--gold); padding: 12px; display: flex; flex-direction: column; }
-        .material-thumb { width: 100%; height: 120px; background-size: cover; background-position: center; border: 1px solid #eee; margin-bottom: 10px; }
-        .price-value { margin-top: auto; font-size: 1.1rem; font-weight: 900; color: var(--dark); border-top: 2px solid var(--gold); padding-top: 8px; }
+        .price-card { 
+            background: var(--gray-bg); 
+            border-left: 4px solid var(--gold); 
+            padding: 8px 12px; 
+            display: flex; 
+            flex-direction: column;
+            min-height: 0;
+        }
+        .material-thumb { 
+            width: 100%; 
+            height: 15vh; /* Высота зависит от экрана */
+            max-height: 130px;
+            background-size: cover; 
+            background-position: center; 
+            border: 1px solid #eee; 
+            margin-bottom: 8px; 
+        }
+        .price-card h3 { font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; }
+        .price-value { 
+            margin-top: auto; 
+            font-size: 1rem; 
+            font-weight: 900; 
+            color: var(--dark); 
+            border-top: 2px solid var(--gold); 
+            padding-top: 6px; 
+        }
 
         .dark-page { background: var(--dark); color: #fff; }
         .list-style { list-style: none; padding: 0; font-size: 1.3rem; }
@@ -136,35 +161,24 @@
             .list-style li { font-size: 1.14rem; }
             .swap-mobile .text-block { order: 1; }
             .swap-mobile .image-block { order: 2; }
-            .important-note { font-size: 0.9rem; padding: 10px; }
-            .price-grid { grid-template-columns: 1fr 1fr; }
+            .important-note { font-size: 0.8rem; padding: 8px 12px; }
+            .price-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .material-thumb { height: 10vh; }
         }
 
-        /* МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ (LANDSCAPE) - ФИКС ПОДРЕЗКИ */
+        /* МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ */
         @media (max-height: 600px) and (orientation: landscape) {
             .page { 
                 height: auto; 
                 min-height: 100vh; 
-                padding: 20px 5% 80px 5%; /* Увеличен нижний отступ */
+                padding: 20px 5% 80px 5%; 
                 overflow-y: visible; 
                 scroll-snap-align: none; 
                 justify-content: flex-start;
             }
             h2 { font-size: 1.5rem; margin-bottom: 10px; }
-            .content-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-            .image-block img { max-height: 50vh; width: auto; }
-            
-            .shipment-container { gap: 8px; margin: 10px 0; }
-            .important-note { font-size: 0.85rem; padding: 6px 12px; }
-            
-            .price-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 10px; 
-                padding-bottom: 50px; 
-            }
-            .material-thumb { height: 70px; }
-            .price-value { font-size: 0.9rem; }
-            .map-box { height: 180px; }
+            .price-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .material-thumb { height: 60px; }
         }
 
         @keyframes pulse-ring {
@@ -229,6 +243,7 @@
                     <li>ИВПП Петропавловск</li>
                     <li>Новая ИВПП Алматы</li>
                     <li>Аэродром Жетыген</li>
+                    <li>Перрон Шымкент</li>
                     <li>Перрон Шымкент</li>
                 </ul>
             </div>
