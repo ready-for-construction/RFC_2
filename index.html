@@ -128,43 +128,53 @@
         }
         .phone-float svg { width: 30px; height: 30px; fill: var(--dark); }
 
-        /* МОБИЛЬНАЯ ВЕРТИКАЛЬНАЯ (IPHONE) */
-        @media (max-width: 600px) and (orientation: portrait) {
-            .page { padding: 20px 15px; }
-            h2 { font-size: 1.5rem; }
-            .important-note { font-size: 0.75rem; padding: 8px 12px; }
-            .shipment-container { gap: 8px; margin: 10px 0; }
-            
-            /* Сжимаем прайс, чтобы влез по высоте */
-            .price-page { justify-content: space-evenly; }
-            .price-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .material-thumb { height: 12vh; min-height: 60px; margin-bottom: 5px; }
-            .price-card { padding: 6px; }
-            .price-card h3 { font-size: 0.75rem; }
-            .price-value { font-size: 0.85rem; padding-top: 4px; }
+        /* ВАШ ОРИГИНАЛЬНЫЙ IPAD ПОРТРЕТ */
+        @media (max-width: 900px) and (orientation: portrait) {
+            .page { padding: 30px 15px; }
+            h2 { font-size: 1.8rem; }
+            .content-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .text-block p { font-size: 1.22rem; line-height: 1.45; }
+            .list-style li { font-size: 1.14rem; }
+            .swap-mobile .text-block { order: 1; }
+            .swap-mobile .image-block { order: 2; }
+            .important-note { font-size: 0.9rem; padding: 10px; }
+            .price-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        /* МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ (IPHONE LANDSCAPE) */
-        @media (max-height: 450px) and (orientation: landscape) {
+        /* ТОЛЬКО ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ (IPHONE) */
+        @media (max-width: 450px) and (orientation: portrait) {
+            .price-page { justify-content: space-evenly; }
+            .price-grid { gap: 8px; }
+            .material-thumb { height: 85px; }
+            .price-card { padding: 8px; }
+            .price-card h3 { font-size: 0.8rem; }
+            .price-value { font-size: 0.9rem; }
+        }
+
+        /* ВАШ ОРИГИНАЛЬНЫЙ LANDSCAPE (IPAD/DESKTOP) */
+        @media (max-height: 600px) and (orientation: landscape) {
             .page { 
                 height: auto; min-height: 100vh; 
-                padding: 15px 5%; overflow-y: visible; 
-                scroll-snap-align: none; justify-content: flex-start;
+                padding: 20px 5% 80px 5%; 
+                overflow-y: visible; 
+                scroll-snap-align: none; 
+                justify-content: flex-start;
             }
-            h2 { font-size: 1.3rem; }
-            .shipment-container { flex-direction: row; flex-wrap: wrap; gap: 5px; margin: 5px 0; }
-            .important-note { font-size: 0.7rem; padding: 5px 10px; }
-            
-            /* Сетка 3 в ряд для ландшафта */
-            .price-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding-bottom: 40px; }
-            .material-thumb { height: 60px; }
-            .price-card h3 { font-size: 0.7rem; }
+            h2 { font-size: 1.5rem; margin-bottom: 10px; }
+            .content-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .image-block img { max-height: 50vh; width: auto; }
+            .shipment-container { gap: 8px; margin: 10px 0; }
+            .important-note { font-size: 0.85rem; padding: 6px 12px; }
+            .price-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; padding-bottom: 50px; }
+            .material-thumb { height: 70px; }
+            .price-value { font-size: 0.9rem; }
+            .map-box { height: 180px; }
         }
 
-        /* IPAD ВЕРТИКАЛЬНЫЙ (Оставляем как было) */
-        @media (min-width: 601px) and (max-width: 900px) {
-            .page { padding: 30px 15px; }
-            .price-grid { grid-template-columns: 1fr 1fr; }
+        /* ДОПОЛНЕНИЕ ТОЛЬКО ДЛЯ УЗКИХ ГОРИЗОНТАЛЬНЫХ ЭКРАНОВ (IPHONE LANDSCAPE) */
+        @media (max-height: 420px) and (orientation: landscape) {
+            .important-note { font-size: 0.7rem; padding: 4px 8px; }
+            .material-thumb { height: 55px; }
         }
 
         @keyframes pulse-ring {
