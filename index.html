@@ -52,6 +52,28 @@
         h2 { font-size: 2.3rem; text-transform: uppercase; font-weight: 900; margin-bottom: 5px; }
         h2::after { content: ""; display: block; width: 60px; height: 6px; background: var(--gold); margin-top: 10px; }
 
+        /* КОНТЕЙНЕР ЗАМЕТОК */
+        .shipment-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px; /* Разделение на строки */
+            margin: 20px 0;
+            z-index: 2;
+        }
+
+        .important-note {
+            font-size: 1.1rem;
+            color: var(--dark);
+            background: var(--gold);
+            padding: 12px 20px;
+            display: block; /* Каждая заметка — отдельный блок */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+
         .content-grid { 
             display: grid; 
             grid-template-columns: 1.2fr 0.8fr; 
@@ -72,27 +94,12 @@
         }
         #hero-page h1 { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; text-transform: uppercase; margin: 0; text-shadow: 0 2px 15px rgba(0,0,0,0.7); }
 
-        /* ПРИМЕЧАНИЯ (ЖЕЛТЫЕ БЛОКИ) */
-        .important-note {
-            font-size: 1.1rem;
-            color: var(--dark);
-            background: var(--gold);
-            padding: 12px 20px;
-            display: inline-block;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
-        }
-
-        .price-page { justify-content: flex-start; padding-top: 30px; overflow-y: auto; }
+        .price-page { justify-content: flex-start; padding-top: 30px; }
         .price-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             gap: 15px; 
             z-index: 2;
-            padding-bottom: 30px;
         }
         .price-card { background: var(--gray-bg); border-left: 5px solid var(--gold); padding: 12px; display: flex; flex-direction: column; }
         .material-thumb { width: 100%; height: 120px; background-size: cover; background-position: center; border: 1px solid #eee; margin-bottom: 10px; }
@@ -129,21 +136,35 @@
             .list-style li { font-size: 1.14rem; }
             .swap-mobile .text-block { order: 1; }
             .swap-mobile .image-block { order: 2; }
-            
+            .important-note { font-size: 0.9rem; padding: 10px; }
             .price-grid { grid-template-columns: 1fr 1fr; }
-            .important-note { font-size: 0.9rem; padding: 10px; width: 100%; }
         }
 
-        /* МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ (LANDSCAPE) */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .page { height: auto; min-height: 100vh; padding: 20px 5%; overflow-y: visible; scroll-snap-align: none; }
-            h2 { font-size: 1.5rem; }
+        /* МОБИЛЬНАЯ ГОРИЗОНТАЛЬНАЯ (LANDSCAPE) - ФИКС ПОДРЕЗКИ */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .page { 
+                height: auto; 
+                min-height: 100vh; 
+                padding: 20px 5% 80px 5%; /* Увеличен нижний отступ */
+                overflow-y: visible; 
+                scroll-snap-align: none; 
+                justify-content: flex-start;
+            }
+            h2 { font-size: 1.5rem; margin-bottom: 10px; }
             .content-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-            .image-block img { max-height: 60vh; width: auto; }
-            .price-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .material-thumb { height: 80px; }
-            .important-note { font-size: 1rem; padding: 8px 15px; }
-            .map-box { height: 200px; }
+            .image-block img { max-height: 50vh; width: auto; }
+            
+            .shipment-container { gap: 8px; margin: 10px 0; }
+            .important-note { font-size: 0.85rem; padding: 6px 12px; }
+            
+            .price-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 10px; 
+                padding-bottom: 50px; 
+            }
+            .material-thumb { height: 70px; }
+            .price-value { font-size: 0.9rem; }
+            .map-box { height: 180px; }
         }
 
         @keyframes pulse-ring {
