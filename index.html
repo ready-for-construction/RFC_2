@@ -14,131 +14,165 @@
             --font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
             height: 100%;
-            margin: 0;
-            padding: 0;
             scroll-snap-type: y mandatory;
-            overflow: hidden; /* Возвращаем строгий контроль страниц */
+            overflow-y: scroll;
+            overflow-x: hidden;
             background-color: var(--dark);
-        }
-
-        body {
             font-family: var(--font-family);
-            background-color: var(--white);
-            color: var(--dark);
             font-style: italic;
             -webkit-font-smoothing: antialiased;
         }
 
         .page {
             height: 100vh;
-            height: 100dvh; 
+            height: 100dvh;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 2vh 8%;
+            padding: 0 8%;
             position: relative;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            overflow: hidden; /* Контент не должен выходить за границы */
+            overflow: hidden;
+            background-color: var(--white);
         }
 
-        h2 { font-size: 2rem; text-transform: uppercase; font-weight: 900; margin-bottom: 10px; }
-        h2::after { content: ""; display: block; width: 50px; height: 5px; background: var(--gold); margin-top: 5px; }
+        h2 { font-size: 2.2rem; text-transform: uppercase; font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
+        h2::after { content: ""; display: block; width: 50px; height: 6px; background: var(--gold); margin-top: 10px; }
 
-        /* СПЕЦИАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ ПРАЙСА */
-        .price-wrapper {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: space-evenly; /* Распределяем элементы по высоте */
+        /* СЕТКА КОНТЕНТА ДЛЯ СТРАНИЦ 2-5 */
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 30px; 
+            align-items: center; 
         }
+        .text-block p { font-size: 1.3rem; line-height: 1.6; font-weight: 400; margin-bottom: 20px; }
+        .image-block img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; box-shadow: 20px 20px 0px -5px var(--gold); }
 
-        .shipment-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin: 10px 0;
-        }
-
+        /* ПРАЙС-ЛИСТ: ФИКС ВЫСОТЫ */
+        .price-page { justify-content: flex-start; padding-top: 5vh; }
+        .shipment-container { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
+        
         .important-note {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--dark);
             background: var(--gold);
-            padding: 8px 15px;
-            display: block;
+            padding: 10px 15px;
             font-weight: 700;
             text-transform: uppercase;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
         }
 
         .price-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 10px; 
-            flex-grow: 0;
+            gap: 12px; 
+            width: 100%;
         }
 
         .price-card { 
             background: var(--gray-bg); 
-            border-left: 4px solid var(--gold); 
-            padding: 8px; 
+            border-left: 5px solid var(--gold); 
+            padding: 10px; 
             display: flex; 
             flex-direction: column;
-            min-height: 0; /* Позволяет сжиматься */
+            min-height: 0; 
         }
 
-        .material-thumb { width: 100%; height: 10vh; min-height: 50px; background-size: cover; background-position: center; margin-bottom: 5px; }
-        .price-card h3 { font-size: 0.9rem; margin: 5px 0; }
-        .price-value { margin-top: auto; font-size: 1rem; font-weight: 900; border-top: 2px solid var(--gold); padding-top: 5px; }
+        .material-thumb { 
+            width: 100%; 
+            height: 12vh; /* Высота зависит от экрана */
+            background-size: cover; 
+            background-position: center; 
+            margin-bottom: 8px; 
+        }
 
-        /* ОБЩИЕ СТИЛИ ТЕКСТА И СЕТОК */
-        .content-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: center; }
-        .text-block p { font-size: 1.2rem; line-height: 1.5; margin-bottom: 15px; }
-        .image-block img { width: 100%; height: auto; max-height: 60vh; object-fit: cover; box-shadow: 15px 15px 0px -5px var(--gold); }
+        .price-card h3 { font-size: 0.9rem; margin-bottom: 5px; color: var(--dark); }
+        .price-value { 
+            margin-top: auto; 
+            font-size: 1.1rem; 
+            font-weight: 900; 
+            border-top: 2px solid var(--gold); 
+            padding-top: 5px; 
+        }
+
+        /* ТЕМНЫЕ СТРАНИЦЫ */
         .dark-page { background: var(--dark); color: #fff; }
-        .list-style { list-style: none; padding: 0; font-size: 1.1rem; }
-        .list-style li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; }
-        .list-style li::before { content: "•"; color: var(--gold); margin-right: 10px; font-size: 1.5rem; }
+        .list-style { list-style: none; }
+        .list-style li { 
+            padding: 12px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            display: flex; 
+            align-items: center; 
+            font-size: 1.2rem;
+        }
+        .list-style li::before { content: "•"; color: var(--gold); margin-right: 15px; font-size: 1.8rem; }
 
-        /* АДАПТИВ ДЛЯ МОБИЛЬНЫХ */
+        /* ФУТЕР / КОНТАКТЫ */
+        .footer-content { text-align: center; color: white; z-index: 2; }
+        .map-box { width: 100%; height: 35vh; border: 3px solid var(--gold); margin: 20px 0; }
+
+        /* МОБИЛЬНАЯ ВЕРСИЯ (ПОРТРЕТ) */
         @media (max-width: 900px) {
-            .page { padding: 2vh 5%; }
-            h2 { font-size: 1.4rem; }
-            .content-grid { grid-template-columns: 1fr 1fr; }
-            .text-block p { font-size: 1rem; }
-            .list-style li { font-size: 0.9rem; }
+            .page { padding: 0 20px; }
+            h2 { font-size: 1.6rem; }
+            .content-grid { grid-template-columns: 1fr; gap: 20px; }
+            .text-block p { font-size: 1.1rem; margin-bottom: 10px; }
+            .image-block img { max-height: 40vh; box-shadow: 10px 10px 0px -3px var(--gold); }
             
-            /* Прайс в мобильном */
             .price-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .important-note { font-size: 0.75rem; padding: 6px; }
-            .material-thumb { height: 8vh; }
-            .price-card h3 { font-size: 0.75rem; }
-            .price-value { font-size: 0.85rem; }
+            .material-thumb { height: 10vh; }
+            .important-note { font-size: 0.85rem; padding: 8px; }
+            
+            .swap-mobile .text-block { order: 1; }
+            .swap-mobile .image-block { order: 2; }
         }
 
         /* КРИТИЧЕСКИЙ ФИКС ДЛЯ ГОРИЗОНТАЛЬНОГО РЕЖИМА (LANDSCAPE) */
-        @media (max-height: 500px) {
-            h2 { font-size: 1.1rem; margin-bottom: 5px; }
-            h2::after { height: 3px; width: 30px; }
-            .important-note { font-size: 0.65rem; padding: 4px 10px; }
-            .shipment-container { gap: 4px; margin: 5px 0; }
-            .price-grid { grid-template-columns: repeat(6, 1fr); gap: 5px; } /* Все товары в одну строку */
-            .material-thumb { display: none; } /* Скрываем фото, чтобы влезли цены */
-            .price-card { padding: 4px; border-left-width: 2px; }
-            .price-card h3 { font-size: 0.6rem; }
-            .price-value { font-size: 0.7rem; padding-top: 2px; }
-            .image-block img { max-height: 40vh; }
+        @media (max-height: 550px) and (orientation: landscape) {
+            .page { padding: 10px 5%; justify-content: flex-start; }
+            h2 { font-size: 1.2rem; margin-bottom: 5px; }
+            h2::after { height: 3px; width: 30px; margin-top: 5px; }
+            
+            .shipment-container { flex-direction: row; gap: 10px; margin: 5px 0; }
+            .important-note { font-size: 0.7rem; padding: 5px 10px; flex: 1; }
+            
+            .price-grid { 
+                grid-template-columns: repeat(6, 1fr); /* Все в ряд */
+                gap: 5px; 
+            }
+            .material-thumb { display: none; } /* Убираем фото для экономии места */
+            .price-card { padding: 5px; border-left-width: 3px; }
+            .price-card h3 { font-size: 0.65rem; }
+            .price-value { font-size: 0.8rem; padding-top: 3px; }
+            
+            .content-grid { grid-template-columns: 1.2fr 0.8fr; gap: 15px; }
+            .image-block img { max-height: 50vh; width: auto; }
+            .text-block p { font-size: 0.9rem; }
+            .map-box { height: 25vh; margin: 10px 0; }
         }
 
-        #hero-page { background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%), url('2026-03-26%2010-50-48.jpg') no-repeat center center/cover; text-align: center; color: #fff; }
-        #hero-page h1 { font-size: clamp(2rem, 10vh, 5rem); margin: 0; text-transform: uppercase; }
+        /* КНОПКА СВЯЗИ */
+        .phone-float {
+            position: fixed; width: 55px; height: 55px; bottom: 20px; right: 20px;
+            background: var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            text-decoration: none;
+        }
+        .phone-float svg { width: 28px; height: 28px; fill: var(--dark); }
 
-        .phone-float { position: fixed; width: 50px; height: 50px; bottom: 20px; right: 20px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .phone-float svg { width: 25px; height: 25px; fill: var(--dark); }
+        #hero-page { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('2026-03-26%2010-50-48.jpg') center/cover;
+            color: white; text-align: center;
+        }
+        #hero-page h1 { font-size: clamp(2rem, 8vw, 5rem); font-weight: 900; }
     </style>
 </head>
 <body>
@@ -152,76 +186,10 @@
     </div>
 
     <div class="page">
-        <div class="content-grid">
+        <div class="content-grid swap-mobile">
             <div class="text-block">
                 <h2>О компании</h2>
-                <p>ТОО «Ready for construction» — лидер в производстве инертных материалов в Казахстане.</p>
+                <p>ТОО «Ready for construction» — ведущая казахстанская компания в сегменте дорожного строительства.</p>
+                <p>С 2014 года мы поставляем инертные материалы высшего качества.</p>
             </div>
-            <div class="image-block"><img src="2026-03-26%2010-58-37.jpg"></div>
-        </div>
-    </div>
-
-    <div class="page dark-page">
-        <div class="content-grid">
-            <div class="image-block"><img src="fon1.jpg"></div>
-            <div class="text-block">
-                <h2>Производство</h2>
-                <p>9 500 тонн продукции в сутки.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="page price-page">
-        <div class="price-wrapper">
-            <h2>Прайс-лист</h2>
-            
-            <div class="shipment-container">
-                <div class="important-note">Режим работы: 8:00–19:00 и 20:00–7:00 (без выходных)</div>
-                <div class="important-note">Предоставляем услуги перевозки до Вашего объекта</div>
-            </div>
-
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('0-5.jpg');"></div>
-                    <h3>0-5 мм</h3>
-                    <div class="price-value">2 600 тг/т</div>
-                </div>
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('5-20.jpg');"></div>
-                    <h3>5-20 мм</h3>
-                    <div class="price-value">4 200 тг/т</div>
-                </div>
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('20-40.jpg');"></div>
-                    <h3>20-40 мм</h3>
-                    <div class="price-value">3 000 тг/т</div>
-                </div>
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('40-70.jpg');"></div>
-                    <h3>40-70 мм</h3>
-                    <div class="price-value">2 800 тг/т</div>
-                </div>
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('0-70.jpg');"></div>
-                    <h3>0-70 мм</h3>
-                    <div class="price-value">2 500 тг/т</div>
-                </div>
-                <div class="price-card">
-                    <div class="material-thumb" style="background-image: url('0-200.jpg');"></div>
-                    <h3>ЩПС 0-200</h3>
-                    <div class="price-value">2 200 тг/т</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page dark-page" id="footer-page">
-        <h2 style="color:var(--gold)">Контакты</h2>
-        <div style="height: 40vh; width:100%; margin: 10px 0;">
-            <iframe src="https://yandex.ru/map-widget/v1/?ll=69.286201%2C53.435499&mode=search&oid=242502476679&ol=biz&z=14&l=sat%2Cskl" width="100%" height="100%" frameborder="0"></iframe>
-        </div>
-        <p>Тел: +7 705 754 47 04 | +7 777 316 05 09</p>
-    </div>
-
-</body>
-</html>
+            <div class="image-block"><img src="2026-03-2
