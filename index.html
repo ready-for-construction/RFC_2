@@ -11,168 +11,132 @@
             --dark: #1A1A1B;
             --white: #ffffff;
             --gray-bg: #f4f4f4;
-            --font-family: 'Helvetica Neue', Helvetica, 'Inter', Arial, sans-serif;
+            --font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
             height: 100%;
-            scroll-snap-type: y mandatory;
-            overflow-y: scroll;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
             background-color: var(--dark);
             font-family: var(--font-family);
             font-style: italic;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Настройка прокрутки страниц */
+        body {
+            overflow-y: auto; 
+            overflow-x: hidden;
+        }
+
         .page {
-            height: 100vh;
-            height: 100dvh;
+            min-height: 100vh;
+            min-height: 100dvh;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 8%;
+            padding: 60px 8%;
             position: relative;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            overflow: hidden;
             background-color: var(--white);
+            border-bottom: 1px solid #eee;
         }
 
-        h2 { font-size: 2.2rem; text-transform: uppercase; font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
-        h2::after { content: ""; display: block; width: 50px; height: 6px; background: var(--gold); margin-top: 10px; }
+        h1, h2 { font-style: italic; position: relative; z-index: 2; }
+        h2 { font-size: 2.3rem; text-transform: uppercase; font-weight: 900; margin-bottom: 15px; line-height: 1.1; }
+        h2::after { content: ""; display: block; width: 60px; height: 6px; background: var(--gold); margin-top: 10px; }
 
-        /* СЕТКА КОНТЕНТА ДЛЯ СТРАНИЦ 2-5 */
-        .content-grid { 
-            display: grid; 
-            grid-template-columns: 1.2fr 0.8fr; 
-            gap: 30px; 
-            align-items: center; 
+        /* ТЕКСТ И СЕТКИ */
+        .content-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; z-index: 2; }
+        .text-block p { font-size: 1.4rem; line-height: 1.7; font-weight: 300; margin-bottom: 25px; }
+        .image-block img { width: 100%; height: auto; box-shadow: 20px 20px 0px -5px var(--gold); }
+
+        /* ПРАЙС-ЛИСТ */
+        .shipment-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            margin: 25px 0; 
+            z-index: 2;
         }
-        .text-block p { font-size: 1.3rem; line-height: 1.6; font-weight: 400; margin-bottom: 20px; }
-        .image-block img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; box-shadow: 20px 20px 0px -5px var(--gold); }
-
-        /* ПРАЙС-ЛИСТ: ФИКС ВЫСОТЫ */
-        .price-page { justify-content: flex-start; padding-top: 5vh; }
-        .shipment-container { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
         
         .important-note {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--dark);
             background: var(--gold);
-            padding: 10px 15px;
+            padding: 15px 20px;
             font-weight: 700;
             text-transform: uppercase;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            line-height: 1.3;
         }
 
         .price-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 12px; 
-            width: 100%;
+            gap: 20px; 
+            z-index: 2;
+            padding-bottom: 40px;
         }
 
         .price-card { 
             background: var(--gray-bg); 
-            border-left: 5px solid var(--gold); 
-            padding: 10px; 
+            border-left: 6px solid var(--gold); 
+            padding: 15px; 
             display: flex; 
             flex-direction: column;
-            min-height: 0; 
         }
 
-        .material-thumb { 
-            width: 100%; 
-            height: 12vh; /* Высота зависит от экрана */
-            background-size: cover; 
-            background-position: center; 
-            margin-bottom: 8px; 
-        }
-
-        .price-card h3 { font-size: 0.9rem; margin-bottom: 5px; color: var(--dark); }
-        .price-value { 
-            margin-top: auto; 
-            font-size: 1.1rem; 
-            font-weight: 900; 
-            border-top: 2px solid var(--gold); 
-            padding-top: 5px; 
-        }
+        .material-thumb { width: 100%; height: 140px; background-size: cover; background-position: center; margin-bottom: 12px; border: 1px solid #ddd; }
+        .price-card h3 { font-size: 1rem; margin-bottom: 10px; }
+        .price-value { margin-top: auto; font-size: 1.3rem; font-weight: 900; color: var(--dark); border-top: 2px solid var(--gold); padding-top: 10px; }
 
         /* ТЕМНЫЕ СТРАНИЦЫ */
         .dark-page { background: var(--dark); color: #fff; }
         .list-style { list-style: none; }
-        .list-style li { 
-            padding: 12px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-            display: flex; 
-            align-items: center; 
-            font-size: 1.2rem;
-        }
-        .list-style li::before { content: "•"; color: var(--gold); margin-right: 15px; font-size: 1.8rem; }
+        .list-style li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; font-size: 1.3rem; }
+        .list-style li::before { content: "•"; color: var(--gold); margin-right: 15px; font-size: 2rem; }
 
         /* ФУТЕР / КОНТАКТЫ */
-        .footer-content { text-align: center; color: white; z-index: 2; }
-        .map-box { width: 100%; height: 35vh; border: 3px solid var(--gold); margin: 20px 0; }
+        .map-box { width: 100%; height: 350px; border: 4px solid var(--gold); margin: 20px 0; background: #222; }
 
-        /* МОБИЛЬНАЯ ВЕРСИЯ (ПОРТРЕТ) */
+        /* МОБИЛЬНЫЙ АДАПТИВ (ПОРТРЕТ) */
         @media (max-width: 900px) {
-            .page { padding: 0 20px; }
-            h2 { font-size: 1.6rem; }
-            .content-grid { grid-template-columns: 1fr; gap: 20px; }
-            .text-block p { font-size: 1.1rem; margin-bottom: 10px; }
-            .image-block img { max-height: 40vh; box-shadow: 10px 10px 0px -3px var(--gold); }
-            
-            .price-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .material-thumb { height: 10vh; }
-            .important-note { font-size: 0.85rem; padding: 8px; }
+            .page { padding: 40px 20px; min-height: auto; }
+            h2 { font-size: 1.8rem; }
+            .content-grid { grid-template-columns: 1fr; gap: 25px; }
+            .text-block p { font-size: 1.2rem; }
+            .price-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .important-note { font-size: 0.95rem; padding: 12px; }
             
             .swap-mobile .text-block { order: 1; }
             .swap-mobile .image-block { order: 2; }
         }
 
-        /* КРИТИЧЕСКИЙ ФИКС ДЛЯ ГОРИЗОНТАЛЬНОГО РЕЖИМА (LANDSCAPE) */
+        /* ГОРИЗОНТАЛЬНЫЙ РЕЖИМ (LANDSCAPE) */
         @media (max-height: 550px) and (orientation: landscape) {
-            .page { padding: 10px 5%; justify-content: flex-start; }
-            h2 { font-size: 1.2rem; margin-bottom: 5px; }
-            h2::after { height: 3px; width: 30px; margin-top: 5px; }
-            
-            .shipment-container { flex-direction: row; gap: 10px; margin: 5px 0; }
-            .important-note { font-size: 0.7rem; padding: 5px 10px; flex: 1; }
-            
-            .price-grid { 
-                grid-template-columns: repeat(6, 1fr); /* Все в ряд */
-                gap: 5px; 
-            }
-            .material-thumb { display: none; } /* Убираем фото для экономии места */
-            .price-card { padding: 5px; border-left-width: 3px; }
-            .price-card h3 { font-size: 0.65rem; }
-            .price-value { font-size: 0.8rem; padding-top: 3px; }
-            
-            .content-grid { grid-template-columns: 1.2fr 0.8fr; gap: 15px; }
-            .image-block img { max-height: 50vh; width: auto; }
-            .text-block p { font-size: 0.9rem; }
-            .map-box { height: 25vh; margin: 10px 0; }
+            .page { padding: 30px 5%; min-height: 100vh; }
+            .price-grid { grid-template-columns: repeat(3, 1fr); }
+            .material-thumb { height: 80px; }
+            .important-note { font-size: 0.85rem; padding: 8px 15px; }
         }
 
-        /* КНОПКА СВЯЗИ */
+        /* ГЛАВНЫЙ ЭКРАН */
+        #hero-page { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('2026-03-26%2010-50-48.jpg') center/cover no-repeat;
+            color: #fff; text-align: center; justify-content: center;
+        }
+        #hero-page h1 { font-size: clamp(2.5rem, 10vw, 6rem); font-weight: 900; letter-spacing: -1px; }
+
         .phone-float {
-            position: fixed; width: 55px; height: 55px; bottom: 20px; right: 20px;
-            background: var(--gold); border-radius: 50%;
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: var(--gold); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            text-decoration: none;
         }
-        .phone-float svg { width: 28px; height: 28px; fill: var(--dark); }
-
-        #hero-page { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('2026-03-26%2010-50-48.jpg') center/cover;
-            color: white; text-align: center;
-        }
-        #hero-page h1 { font-size: clamp(2rem, 8vw, 5rem); font-weight: 900; }
+        .phone-float svg { width: 30px; height: 30px; fill: var(--dark); }
     </style>
 </head>
 <body>
@@ -183,13 +147,88 @@
 
     <div class="page" id="hero-page">
         <h1>READY FOR CONSTRUCTION</h1>
+        <p style="font-size: 1.5rem; margin-top: 10px; font-weight: 300;">Industrial Excellence since 2014</p>
     </div>
 
     <div class="page">
         <div class="content-grid swap-mobile">
             <div class="text-block">
                 <h2>О компании</h2>
-                <p>ТОО «Ready for construction» — ведущая казахстанская компания в сегменте дорожного строительства.</p>
-                <p>С 2014 года мы поставляем инертные материалы высшего качества.</p>
+                <p>ТОО «Ready for construction» — ведущая казахстанская компания в сегменте дорожного строительства и производства инертных материалов.</p>
+                <p>С 2014 года мы выступаем надежным партнером в реализации масштабных инфраструктурных проектов.</p>
             </div>
-            <div class="image-block"><img src="2026-03-2
+            <div class="image-block"><img src="2026-03-26%2010-58-37.jpg"></div>
+        </div>
+    </div>
+
+    <div class="page dark-page">
+        <div class="content-grid">
+            <div class="image-block"><img src="fon1.jpg"></div>
+            <div class="text-block">
+                <h2>Производство щебня</h2>
+                <p>Наш комплекс у ГОК «Васильковский» обеспечивает производительность до 9 500 тонн в сутки.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="content-grid swap-mobile">
+            <div class="text-block">
+                <h2>Наши проекты</h2>
+                <ul class="list-style">
+                    <li>Реконструкция дороги Алматы – Усть-Каменогорск</li>
+                    <li>Петропавловск – гр. РФ (на Омск)</li>
+                    <li>Реконструкция дороги Алматы – Талдыкорган</li>
+                </ul>
+            </div>
+            <div class="image-block"><img src="IMG_4649.jpg"></div>
+        </div>
+    </div>
+
+    <div class="page">
+        <h2>Прайс-лист продукции</h2>
+        
+        <div class="shipment-container">
+            <div class="important-note">Режим работы отгрузки с 8:00 по 19:00 и с 20:00 по 7:00 (без выходных)</div>
+            <div class="important-note">Предоставляем услуги перевозки материала до Вашего объекта.</div>
+        </div>
+
+        <div class="price-grid">
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('0-5.jpg');"></div>
+                <h3>Фракция 0-5 мм</h3>
+                <div class="price-value">2 600 тг/т</div>
+            </div>
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('5-20.jpg');"></div>
+                <h3>Фракция 5-20 мм</h3>
+                <div class="price-value">4 200 тг/т</div>
+            </div>
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('20-40.jpg');"></div>
+                <h3>Фракция 20-40 мм</h3>
+                <div class="price-value">3 000 тг/т</div>
+            </div>
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('40-70.jpg');"></div>
+                <h3>Фракция 40-70 мм</h3>
+                <div class="price-value">2 800 тг/т</div>
+            </div>
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('0-70.jpg');"></div>
+                <h3>Фракция 0-70 мм</h3>
+                <div class="price-value">2 500 тг/т</div>
+            </div>
+            <div class="price-card">
+                <div class="material-thumb" style="background-image: url('0-200.jpg');"></div>
+                <h3>Фракция 0-200 мм</h3>
+                <div class="price-value">2 200 тг/т</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page dark-page">
+        <div class="footer-content">
+            <h2>Локация карьера</h2>
+            <div class="map-box">
+                <iframe src="
